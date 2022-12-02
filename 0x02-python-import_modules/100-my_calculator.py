@@ -1,21 +1,27 @@
 #!/usr/bin/python3
-# 100-my_calculator.py
-# Gedeon Obae Gekonge <gideonobae@gmail.com>
-
 if __name__ == "__main__":
-    """Handle basic arithmetic operations."""
+    # IMPORTS
     from calculator_1 import add, sub, mul, div
-    import sys
+    from sys import argv
 
-    if len(sys.argv) - 1 != 3:
-        print("Usage: ./100-my_calculator.py <a> <operator> <b>")
-        sys.exit(1)
+    # CONDITIONALS
+    if len(argv) != 4:
+        print(f"Usage: ./100-my_calculator.py <a> <operator> <b>")
+        exit(1)
+    if argv[2] != '+' and argv[2] != '-' and argv[2] != '*' and argv[2] != '/':
+        print(f"Unknown operator. Available operators: +, -, * and /")
+        exit(1)
 
-    ops = {"+": add, "-": sub, "*": mul, "/": div}
-    if sys.argv[2] not in list(ops.keys()):
-        print("Unknown operator. Available operators: +, -, * and /")
-        sys.exit(1)
+    # VARIABLES
+    a = argv[1]
+    b = argv[3]
 
-    a = int(sys.argv[1])
-    b = int(sys.argv[3])
-    print("{} {} {} = {}".format(a, sys.argv[2], b, ops[sys.argv[2]](a, b)))
+    # CODE
+    if argv[2] == '+':
+        print(f"{a} + {b} = {add(int(a), int(b))}")
+    if argv[2] == '-':
+        print(f"{a} - {b} = {sub(int(a), int(b))}")
+    if argv[2] == '*':
+        print(f"{a} * {b} = {mul(int(a), int(b))}")
+    if argv[2] == '/':
+        print(f"{a} / {b} = {div(int(a), int(b))}")
